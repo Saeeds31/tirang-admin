@@ -15,11 +15,11 @@ import "vue3-toastify/dist/index.css";
 import pinia from "./stores";
 import VueFileAgent from "@boindil/vue-file-agent-next";
 import Vue3PersianDatetimePicker from "vue3-persian-datetime-picker";
-import "@boindil/vue-file-agent-next/dist/vue-file-agent-next.css"; // برای استایل‌ها
+import "@boindil/vue-file-agent-next/dist/vue-file-agent-next.css";
 // local=http://127.0.0.1:8000
 // porduction=https://api.car-tap.ir
-axios.defaults.baseURL = "http://127.0.0.1:8000/api/v1/admin";
-window.baseImageAddress = "http://127.0.0.1:8000/public/uploads/";
+axios.defaults.baseURL = "https://api.tirangstudio.ir/api/v1/admin";
+window.baseImageAddress = "https://api.tirangstudio.ir/public/uploads/";
 const app = createApp(App);
 // app.use(CKEditor)
 app.use(Vue3Toastify, {
