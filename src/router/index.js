@@ -77,7 +77,21 @@ const routes = [
     name: "settings",
     component: () => import("@/views/settings/index.vue"),
   },
-
+  {
+    path: "/users/employers/list",
+    name: "employers-list",
+    component: () => import("@/views/Employer/list.vue"),
+  },
+  {
+    path: "/users/employers/create",
+    name: "employers-create",
+    component: () => import("@/views/Employer/create.vue"),
+  },
+  {
+    path: "/users/employers/:id/edit",
+    name: "employers-edit",
+    component: () => import("@/views/Employer/edit.vue"),
+  },
   {
     path: "/team/list",
     name: "team-list",
@@ -92,6 +106,36 @@ const routes = [
     path: "/team/:id/edit",
     name: "team-edit",
     component: () => import("@/views/Team/edit.vue"),
+  },
+  {
+    path: "/portfolios/list",
+    name: "portfolios-list",
+    component: () => import("@/views/Portfolio/list.vue"),
+  },
+  {
+    path: "/portfolios/create",
+    name: "portfolios-create",
+    component: () => import("@/views/Portfolio/create.vue"),
+  },
+  {
+    path: "/portfolios/:id/edit",
+    name: "portfolios-edit",
+    component: () => import("@/views/Portfolio/edit.vue"),
+  },
+  {
+    path: "/portfolios/categories/list",
+    name: "portfolios-categories-list",
+    component: () => import("@/views/PortfolioCategory/list.vue"),
+  },
+  {
+    path: "/portfolios/categories/create",
+    name: "portfolios-categories-create",
+    component: () => import("@/views/PortfolioCategory/create.vue"),
+  },
+  {
+    path: "/portfolios/categories/:id/edit",
+    name: "portfolios-categories-edit",
+    component: () => import("@/views/PortfolioCategory/edit.vue"),
   },
   {
     path: "/history/list",

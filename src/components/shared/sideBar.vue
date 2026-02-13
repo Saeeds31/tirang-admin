@@ -87,8 +87,17 @@ const menuItems = [
       },
       { name: "نقش ها", link: "/users/roles", permissions: ['role_view'], icon: "bi-person-badge" },
       { name: "مدیران", link: "/users/managers", permissions: ['manager_view'], icon: "bi-shield-check" },
-      { name: "کارفرمایان", link: "/users/employers", permissions: ['employers_view'], icon: "bi-person" },
+      { name: "کارفرمایان", link: "/users/employers/list", permissions: ['employer_view'], icon: "bi-person" },
       { name: "دسترسی شهری", link: "/users/city-permission", permissions: ['citypermission_view'], icon: "bi-building" },
+    ],
+  },
+  {
+    permissions: ['portfolio_view', 'portfolio_category_view'],
+    name: "نمونه کار",
+    icon: "bi-images",
+    children: [
+      { name: "لیست", link: "/portfolios/list", permissions: ['portfolio_view'], icon: "bi-list-ul" },
+      { name: "دسته بندی ها", link: "/portfolios/categories/list", permissions: ['portfolio_category_view'], icon: "bi-tag" },
     ],
   },
   {
