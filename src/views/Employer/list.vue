@@ -22,7 +22,6 @@
             <thead>
               <tr>
                 <th>شناسه</th>
-                <th>نام کامل</th>
                 <th>عنوان کسب و کار</th>
                 <th>عملیات</th>
               </tr>
@@ -30,8 +29,6 @@
             <tbody>
               <tr v-for="item in employers" :key="item.id">
                 <td>{{ item.id }}</td>
-
-                <td>{{ item.full_name }}</td>
                 <td>{{ item.business_label }}</td>
                 <td>
                   <router-link v-if="checkPermission(['employer_update'])" :to="`/users/employers/${item.id}/edit`"

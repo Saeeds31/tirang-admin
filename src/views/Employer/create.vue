@@ -3,15 +3,8 @@
         <b-card title="ایجاد کارفرما جدید">
             <b-form @submit.prevent="submitForm">
                 <b-row>
-                    <b-col cols="12" md="6">
-                        <b-form-group label="نام کامل" label-for="full_name">
-                            <b-form-input id="full_name" v-model="form.full_name" :state="!errors.full_name"
-                                placeholder="نام کامل کارفرما" />
-                            <b-form-invalid-feedback v-if="errors.full_name">{{ errors.full_name[0]
-                                }}</b-form-invalid-feedback>
-                        </b-form-group>
-                    </b-col>
-                    <b-col cols="12" md="6">
+                
+                    <b-col cols="12" md="12">
                         <b-form-group label="شماره موبایل" label-for="mobile">
                             <b-form-input id="mobile" v-model="form.mobile" :state="!errors.mobile"
                                 placeholder="شماره موبایل کارفرما" />
@@ -26,13 +19,6 @@
                             <b-form-invalid-feedback v-if="errors.business_label">{{ errors.business_label[0]
                                 }}</b-form-invalid-feedback>
                         </b-form-group>
-                    </b-col>
-                    <b-col cols="12" md="12">
-                        <b-form-group label="پروفایل کارفرما ">
-                            <VueFileAgent @select="imageLoaded" :maxFiles="1" accept=".jpg,.png" theme="grid" deletable
-                                sortable />
-                        </b-form-group>
-                        <small v-if="errors.image" class="text-danger">{{ errors.image[0] }}</small>
                     </b-col>
                     <b-col cols="12" md="12">
                         <b-form-group label="لوگو کسب و کار ">
@@ -66,11 +52,9 @@ const router = useRouter();
 let loader = ref(false);
 const checkPermission = store.checkPermission;
 const form = reactive({
-    full_name: '',
     mobile: '',
     business_logo: '',
     business_label: '',
-    image: '',
 })
 const errors = reactive({})
 function imageLoaded(files) {

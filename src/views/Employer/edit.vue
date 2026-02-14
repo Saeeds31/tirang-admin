@@ -4,15 +4,8 @@
       <h5 class="mb-3">ویرایش عضو</h5>
       <b-form @submit.prevent="handleSubmit">
         <b-row>
-          <b-col cols="12" md="6">
-            <b-form-group label="نام کامل" label-for="full_name">
-              <b-form-input id="full_name" v-model="form.full_name" :state="!errors.full_name"
-                placeholder="نام کامل کارفرما" />
-              <b-form-invalid-feedback v-if="errors.full_name">{{ errors.full_name[0]
-              }}</b-form-invalid-feedback>
-            </b-form-group>
-          </b-col>
-          <b-col cols="12" md="6">
+
+          <b-col cols="12" md="12">
             <b-form-group label="شماره موبایل" label-for="mobile">
               <b-form-input id="mobile" v-model="form.mobile" :state="!errors.mobile"
                 placeholder="شماره موبایل کارفرما" />
@@ -28,14 +21,7 @@
               }}</b-form-invalid-feedback>
             </b-form-group>
           </b-col>
-          <b-col cols="12" md="12">
-            <b-form-group label="پروفایل کارفرما ">
-              <VueFileAgent @update:raw-model-value="imageLoaded" :raw-model-value="oldImage" :maxFiles="1"
-                accept=".pdf,.jpg,.png" theme="grid" deletable sortable>
-              </VueFileAgent>
-              <small v-if="errors.image" class="text-danger">{{ errors.image[0] }}</small>
-            </b-form-group>
-          </b-col>
+
           <b-col cols="12" md="12">
             <b-form-group label="لوگو کسب و کار">
               <VueFileAgent @update:raw-model-value="imageLoaded1" :raw-model-value="oldImage1" :maxFiles="1"
@@ -73,10 +59,8 @@ const route = useRoute();
 const oldImage = ref([]);
 const oldImage1 = ref([]);
 const form = reactive({
-  full_name: '',
   mobile: '',
   business_label: '',
-  image: [],
   business_logo: [],
 
 })
@@ -85,15 +69,6 @@ onMounted(async () => {
   try {
     // GET اطلاعات عضو
     const res = await axios.get(`/employers/${route.params.id}`)
-
-    oldImage.value =
-      [{
-        name: res.data.data.image.split('/').pop(),
-        size: 0,
-        type: 'image/jpeg',
-        ext: res.data.data.image.split('.').pop(),
-        url: `${baseImageAddress}${res.data.data.image}`,
-      }];
     oldImage1.value =
       [{
         name: res.data.data.business_logo.split('/').pop(),
@@ -128,15 +103,13 @@ const handleSubmit = async () => {
   try {
     const formData = new FormData()
     for (const key in form) {
-      if (key != 'image' && key != 'business_logo') formData.append(key, form[key])
+      if (key != 'business_logo') formData.append(key, form[key])
     }
     formData.append("_method", "PUT");
-    if (form.image) {
-      formData.append("image", form.image);
-    }
+
     if (form.business_logo) {
       formData.append("business_logo", form.business_logo);
-    }
+    }1
     await axios.post(`/employers/${route.params.id}`, formData, {
       headers: { 'Content-Type': 'multipart/form-data' }
     })
