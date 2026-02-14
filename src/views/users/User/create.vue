@@ -17,7 +17,7 @@
                 <small v-if="errors.mobile" class="text-danger">{{ errors.mobile[0] }}</small>
             </div>
 
-         
+
             <!-- کد ملی -->
             <div class="col-md-6">
                 <label class="form-label">کد ملی (اختیاری)</label>
@@ -31,11 +31,16 @@
                 <date-picker display-format="jYYYY/jMM/jDD" format="YYYY-MM-DD" v-model="form.birth_date"></date-picker>
                 <small v-if="errors.birth_date" class="text-danger">{{ errors.birth_date[0] }}</small>
             </div>
-
+            <b-col cols="12" md="12">
+                <b-form-group label="تصویر ">
+                    <VueFileAgent @select="imageLoaded" :maxFiles="1" accept=".jpg,.png" theme="grid" deletable
+                        sortable />
+                </b-form-group>
+                <small v-if="errors.image" class="text-danger">{{ errors.image[0] }}</small>
+            </b-col>
             <div class="col-12">
-                <button
-                v-if="checkPermission(['user_store'])"
-                type="submit" class="btn btn-primary" :disabled="loading">
+                <button v-if="checkPermission(['user_store'])" type="submit" class="btn btn-primary"
+                    :disabled="loading">
                     {{ loading ? 'در حال ذخیره...' : 'ذخیره' }}
                 </button>
             </div>
@@ -55,10 +60,13 @@ const checkPermission = store.checkPermission;
 const form = ref({
     full_name: '',
     mobile: '',
+    image: '',
     national_code: '',
     birth_date: '',
 })
-
+function imageLoaded(files) {
+    form.value.image = files[0].file
+}
 const loading = ref(false)
 const errors = reactive({})
 

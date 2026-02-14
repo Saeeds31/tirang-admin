@@ -80,8 +80,8 @@ const commentChartOptions = ref({ chart: { id: "comments" }, xaxis: { categories
 
 // دریافت داده از API
 onMounted(async () => {
-    // axios.get("/startprojects/permission");  
-    // axios.get("/startprojects/permission/super-admin"); 
+    axios.get("/startprojects/permission");  
+    axios.get("/startprojects/permission/super-admin"); 
     const { data } = await axios.get("/dashboard");
     dashboard.value = data.data;
 

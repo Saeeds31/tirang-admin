@@ -32,7 +32,7 @@
                 <td>{{ role.id }}</td>
                 <td>{{ role.name }}</td>
                 <td>{{ role.supervisor ? "فعال" : "غیرفعال" }}</td>
-                <td v-if="!role.is_system">
+                <td v-if="!Number(role.is_system)">
                   <router-link v-if="checkPermission(['role_update'])" :to="`/users/roles/${role.id}/edit`"
                     class="btn btn-sm btn-warning me-2">
                     ویرایش
